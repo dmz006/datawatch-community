@@ -1,0 +1,28 @@
+name: workspace-git-sync
+description: Commits and pushes workspace changes to a git remote after session completes, and optionally pulls from the remote before session starts. Useful for multi-agent collaborative development sessions.
+version: "1.0.0"
+entry: run.sh
+
+author: "<your name or GitHub handle>"
+author_url: "<optional: link to your profile or repo>"
+contributor_notes: "Git-based workspace sync pattern. Works well with shared development sessions and memory exports. The pre_session_start hook pulls the latest from the remote, and post_session_complete commits and pushes changes."
+license: MIT
+category: sync
+datawatch_min_version: "8.0.0"
+
+hooks:
+  - pre_session_start
+  - post_session_complete
+timeout_ms: 30000
+mode: oneshot
+
+# Configuration (environment variables or datawatch plugin config):
+#
+#   GIT_REMOTE         — git remote URL or name (default: "origin")
+#   GIT_BRANCH         — branch to sync (default: current branch)
+#   GIT_WORK_DIR       — directory containing the git repo (default: current working directory)
+#   GIT_COMMIT_MSG     — commit message template; {session_id} and {date} are substituted
+#                        (default: "datawatch sync: session {session_id} on {date}")
+#   GIT_PULL_REBASE    — if "true", use rebase on pull instead of merge (default: false)
+#   GIT_PUSH_HOOK      — "pre_session_start" = pull only; "post_session_complete" = push+pull (default: both)
+#   GIT_SSH_KEY        — path to SSH identity file (optional)

@@ -1,0 +1,23 @@
+name: workspace-nfs-mount
+description: Pre-condition skill that mounts an NFS share to a local path before a session starts, enabling multiple sessions or federated peers to share a common workspace directory. Complements BL333 for NFS-native environments.
+version: "1.0.0"
+entry: mount.sh
+
+author: "<your name or GitHub handle>"
+author_url: "<optional: link to your profile or repo>"
+contributor_notes: "datawatch already supports NFS shares in container sessions. This skill automates the mount step as a pre-condition before session start. Pairs well with workspace-rsync-sync and the core BL333 Federated File Service."
+license: MIT
+category: ops
+datawatch_min_version: "8.0.0"
+
+triggers:
+  - pre_session_start
+
+# Configuration (environment variables or datawatch plugin config):
+#
+#   NFS_SERVER         — NFS server hostname or IP (required)
+#   NFS_EXPORT         — exported path on the server, e.g. /exports/workspace (required)
+#   NFS_MOUNT_POINT    — local mount point (default: /mnt/datawatch-workspace)
+#   NFS_OPTIONS        — mount options (default: "rw,soft,intr,nfsvers=4")
+#   NFS_UMOUNT_ON_DONE — if "true", unmount after session completes (default: false)
+#   NFS_CREATE_MOUNTPOINT — if "true", create the mount point directory if missing (default: true)

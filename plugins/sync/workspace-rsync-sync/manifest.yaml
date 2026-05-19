@@ -1,0 +1,25 @@
+name: workspace-rsync-sync
+description: Rsync workspace files to/from a remote datawatch host over SSH after session completes. Lightweight alternative to the BL333 Federated File Service for teams already using SSH/rsync.
+version: "1.0.0"
+entry: run.sh
+
+author: "<your name or GitHub handle>"
+author_url: "<optional: link to your profile or repo>"
+contributor_notes: "Pre-BL333 workspace sync pattern. Useful when federation is not yet configured or when rsync/SSH is the preferred transport. Set RSYNC_REMOTE to the remote host:path and RSYNC_SSH_KEY to an identity file."
+license: MIT
+category: sync
+datawatch_min_version: "8.0.0"
+
+hooks:
+  - post_session_complete
+timeout_ms: 30000
+mode: oneshot
+
+# Configuration (environment variables or datawatch plugin config):
+#
+#   RSYNC_REMOTE       — rsync destination, e.g. user@remote-host:/path/to/workspace (required)
+#   RSYNC_LOCAL_DIR    — local directory to sync (default: current working directory)
+#   RSYNC_SSH_KEY      — path to SSH identity file (optional, uses SSH agent if unset)
+#   RSYNC_DIRECTION    — "push" (local→remote, default), "pull" (remote→local), or "both"
+#   RSYNC_EXCLUDE      — comma-separated patterns to exclude (default: ".git,*.tmp,node_modules")
+#   RSYNC_DRY_RUN      — if "true", prints what would be transferred without doing it
