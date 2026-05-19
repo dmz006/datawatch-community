@@ -1,0 +1,24 @@
+name: inbox-integrator
+description: Watches a sibling's INBOX directory and integrates new proposals into the canonical InFlight workspace with attribution headers and originating-sibling notification.
+version: "1.0.0"
+entry: run.sh
+
+author: "<your name or GitHub handle>"
+author_url: "<optional: link to your profile or repo>"
+contributor_notes: "Automates the handoff step in multi-agent polity workflows where a sibling agent drops proposals into an INBOX and a human operator would otherwise have to manually move them into the shared InFlight workspace."
+license: MIT
+category: comms
+datawatch_min_version: "8.0.0"
+
+hooks:
+  - post_session_complete
+timeout_ms: 10000
+mode: oneshot
+
+# Configuration via environment variables (set in datawatch plugin config or session env):
+#
+#   INBOX_DIR       — path to watch for new proposal files (required)
+#   INFLIGHT_DIR    — canonical workspace InFlight directory (required)
+#   SIBLING_NAME    — name of the proposing sibling, used for file prefix (required)
+#   NOTIFY_MAILBOX  — path to sibling's inbound mailbox for acknowledgment (optional)
+#   REQUIRE_APPROVAL — if "true", drop to pending-review dir instead of InFlight (default: false)
