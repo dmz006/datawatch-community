@@ -3,4 +3,8 @@
 Skills for communication workflows — Matrix room presence, message routing, notification
 formatting, and cross-agent messaging patterns.
 
-No skills here yet. [Submit the first one →](../../CONTRIBUTING.md)
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| [imap-mcp](imap-mcp/) | Manage email over IMAP — triage, unsubscribe, sender audit, bulk-archive, search, export — via the [imap-mcp](https://github.com/dmz006/imap-mcp) MCP server. |
