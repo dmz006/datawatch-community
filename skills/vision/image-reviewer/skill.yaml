@@ -1,0 +1,22 @@
+name: image-reviewer
+description: >
+  Analyzes screenshots, architecture diagrams, UI mockups, and other visual
+  content. When an image is attached to a task, the datawatch vision backend
+  describes it and prepends [image: <description>] to the task text before
+  this skill sees it — giving the LLM visual context without multimodal prompting.
+version: "1.0.0"
+entry: SKILL.md
+accepts_images: true
+
+author: "dmz006"
+author_url: "https://github.com/dmz006"
+license: MIT
+category: vision
+datawatch_min_version: "8.15.0"
+
+# Pairs well with a vision backend configured in datawatch:
+#   vision:
+#     enabled: true
+#     backend: ollama          # or openai / openai_compat
+#     endpoint: http://ollama-host:11434
+#     model: Gemma3:12b        # or llava, gpt-4o, etc.
