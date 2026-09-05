@@ -4,7 +4,7 @@ description: >
   content. When an image is attached to a task, the datawatch vision backend
   describes it and prepends [image: <description>] to the task text before
   this skill sees it — giving the LLM visual context without multimodal prompting.
-version: "1.0.0"
+version: "1.1.0"
 entry: SKILL.md
 accepts_images: true
 
@@ -12,7 +12,7 @@ author: "dmz006"
 author_url: "https://github.com/dmz006"
 license: MIT
 category: vision
-datawatch_min_version: "8.15.0"
+datawatch_min_version: "8.19.3"
 
 # Pairs well with a vision backend configured in datawatch:
 #   vision:

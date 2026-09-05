@@ -49,6 +49,16 @@ vision:
   max_image_bytes: 10485760
 ```
 
-Then POST tasks with an `image_url` field via the webhook backend, or
-supply `image_path` in a council run. The `[image: ...]` prefix appears
-automatically — no prompt engineering required.
+**Requires datawatch ≥ 8.19.3.** Vision injection runs on all input paths:
+
+- **PWA session input bar** — attach an image with the 📎 button, type your
+  prompt, and send. The `[image: ...]` description is injected before the text
+  reaches the session.
+- **Signal / Telegram channel messages** — send an image as an attachment
+  alongside your message text.
+- **Webhook backend** — POST tasks with an `image_url` field.
+- **Council runs** — supply `image_path` in the run payload.
+
+The `[image: ...]` prefix appears automatically on all paths — no prompt
+engineering required. If vision is disabled or the file is unreadable, the
+raw `[image:<path>]` tag passes through unchanged.
