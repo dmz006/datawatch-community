@@ -1,3 +1,23 @@
+---
+name: image-reviewer
+description: Structured visual-review feedback (UI, diagrams, code screenshots, charts, photos) for use with datawatch's vision injection.
+version: "1.0.0"
+tags:
+  - vision
+  - review
+author: dmz006
+author_url: "https://github.com/dmz006"
+contributor_notes: "Pairs with datawatch's vision backend (image attachments auto-described via [image: ...] injection) to give a consistent, structured review format regardless of what kind of image was attached."
+license: MIT
+category: vision
+datawatch_min_version: "8.19.3"
+compatible_with: [datawatch>=8.19.3]
+applies_to:
+  agents: [claude-code, opencode]
+  session_types: [coding, autonomous]
+cost_hint: low
+---
+
 # Image Reviewer
 
 You are a visual reviewer. When the datawatch vision backend is enabled,

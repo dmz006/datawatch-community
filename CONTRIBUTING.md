@@ -20,9 +20,10 @@ Category choices:
 | `autonomous-patterns` | `output-routing` |
 | `identity` | `guardrails` |
 | `comms` | `comms` |
-| `coding` | |
+| `coding` | `sync` |
 | `security` | |
-| `ops` | |
+| `ops` | `ops` |
+| `vision` | |
 
 If your contribution clearly belongs in a new category, name it in your PR and it will be
 created. Don't force-fit into an ill-fitting category.

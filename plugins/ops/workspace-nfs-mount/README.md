@@ -1,6 +1,6 @@
 # workspace-nfs-mount
 
-Pre-condition skill that mounts an NFS share to a local path before a datawatch session starts.
+Pre-condition plugin that mounts an NFS share to a local path before a datawatch session starts.
 
 ## When to use this
 
@@ -8,22 +8,28 @@ Pre-condition skill that mounts an NFS share to a local path before a datawatch 
 - Multiple datawatch instances (or agents) need access to the same filesystem
 - You want automatic mount/unmount lifecycle tied to session start/complete
 
-datawatch already supports NFS shares in container sessions — this skill automates the mount step.
+datawatch already supports NFS shares in container sessions — this plugin automates the mount step.
 
 For full federated file management with access control, see **BL333 Federated File Service** (datawatch v8.3.0+).
 
 ## Setup
 
+```bash
+# Pull from the community registry (if connected)
+datawatch skills sync
+# Then enable the plugin for a session profile
+datawatch plugins enable workspace-nfs-mount --profile <your-profile>
+```
+
 ```yaml
-# datawatch skill config
-skills:
-  - name: workspace-nfs-mount
-    triggers: [pre_session_start]
-    env:
-      NFS_SERVER: "192.168.1.10"
-      NFS_EXPORT: "/exports/shared-workspace"
-      NFS_MOUNT_POINT: "/mnt/datawatch-workspace"
-      NFS_OPTIONS: "rw,soft,intr,nfsvers=4"
+# datawatch plugin config
+plugins:
+  - workspace-nfs-mount
+env:
+  NFS_SERVER: "192.168.1.10"
+  NFS_EXPORT: "/exports/shared-workspace"
+  NFS_MOUNT_POINT: "/mnt/datawatch-workspace"
+  NFS_OPTIONS: "rw,soft,intr,nfsvers=4"
 ```
 
 ## Environment variables
