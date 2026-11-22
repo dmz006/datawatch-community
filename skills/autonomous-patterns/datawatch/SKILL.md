@@ -1,7 +1,7 @@
 ---
 name: datawatch
 description: Operator status, plan, holds, questions and timeline for a datawatch project, from one command with no prompt to write.
-version: "1.0.0"
+version: "1.1.0"
 tags:
   - autonomous
   - supervisor
@@ -18,6 +18,7 @@ applies_to:
   agents: [claude-code]
   session_types: [coding, autonomous]
 cost_hint: low
+argument-hint: "[status|plan|holds|questions|timeline|help] [project]"
 ---
 
 # datawatch: status, plan, holds, questions, timeline
@@ -35,6 +36,7 @@ Read the first word after the command:
 | `holds` | parked, stuck and held items, oldest first (`holds.md`) |
 | `questions`, `recipes` | open questions one at a time (`questions.md`) |
 | `timeline` | the Automata timeline (`timeline.md`) |
+| `help`, `?` | list the variants with one example each (`help.md`) |
 
 Read the matching sub-document in this skill's folder and follow it. A second word is the project name; with none, use the project this session's working folder belongs to (`get_my_scope`, then `project_list`). If you cannot tell which project, list the registered projects and ask once.
 
