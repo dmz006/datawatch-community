@@ -1,7 +1,7 @@
 ---
 name: datawatch
 description: Operator status, plan, holds, questions and timeline for a datawatch project, from one command with no prompt to write.
-version: "1.1.0"
+version: "1.1.1"
 tags:
   - autonomous
   - supervisor
@@ -45,7 +45,7 @@ Read the matching sub-document in this skill's folder and follow it. A second wo
 Do these reads before you write a word to the operator. Prefer the MCP tool; use the command line if the tool is not available.
 
 1. The newest hand-off or status notes: `memory_recall` for "handoff" and "status" with the project name, and any hand-off file the project keeps.
-2. What the doer and watcher last did: `datawatch result get doer-last`, `doer-history`, `watcher-last` (read with the `datawatch result` command only; never write results with MCP tools).
+2. Whether the services run (`datawatch schedule list`: the detector and watch-record schedules must be pending with a recent last fire and no failures in a row; `datawatch result get detector-state` heartbeat) and what the watch found (`datawatch result get watch-latest`). Then what the doer and watcher last did: `datawatch result get doer-last`, `doer-history`, `watcher-last` (read with the `datawatch result` command only; never write results with MCP tools).
 3. The daemon: `autonomous_status`, `autonomous_prd_list` (running, blocked, failed, needs_review), `capacity_status`, `burn_guard_status` and `usage_advice` for the week against the pace line.
 4. Open questions: `question_list`. Held work: `autonomous_attention_list`, `autonomous_held`, `autonomous_held_questions`.
 5. Unlanded work: `autonomous_unlanded_work`.
