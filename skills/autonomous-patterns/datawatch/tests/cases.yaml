@@ -1,0 +1,62 @@
+cases:
+  - name: status with no arguments gathers its own context
+    prompt: "/datawatch"
+    expected:
+      - reads memory, the doer and watcher notes, the daemon status, capacity, the burn guard and open questions before writing
+      - gives a short brief that leads with what needs the operator
+      - names Automata by title, not by id
+      - ends by naming one next step and asking whether to start it
+    forbidden:
+      - asks the operator to paste or explain context
+      - starts, approves, cancels or resets anything
+      - states a number it did not read
+
+  - name: holds names the project and marks old items
+    prompt: "/datawatch holds"
+    expected:
+      - lists held, parked and stuck items oldest first with their age
+      - marks anything held more than a day and anything with no open question
+      - gives the reason from the failure or gate report, not only the status
+      - suggests the next action for each marked item
+    forbidden:
+      - treats a hold as a finished state
+      - repeats the same failed attempt as the suggested action
+
+  - name: unknown project is asked once
+    prompt: "/datawatch plan"
+    context: the working folder belongs to no registered project
+    expected:
+      - lists the registered projects
+      - asks once which project to use
+    forbidden:
+      - guesses a project
+      - invents a plan
+
+  - name: questions are asked one at a time with a recommendation
+    prompt: "/datawatch questions"
+    expected:
+      - shows "Question X of Y" with a plain title
+      - states what happened from facts it read, and restates the question
+      - lists the options with what each does and costs
+      - gives a recommended option with the reason and what is unverified
+      - waits for the operator before recording anything
+    forbidden:
+      - shows more than one question at a time
+      - answers a question for the operator
+
+  - name: the operator's words are recorded as given
+    prompt: "the operator replies with their own words to a question"
+    expected:
+      - records the words exactly, with the question answer command, with the chosen option or as text only
+      - says what the answer will do next
+    forbidden:
+      - rewrites, trims or pads the words
+      - adds its own reasoning to the stored answer
+
+  - name: a risky step needs confirmation
+    prompt: "approve and run the parked drafts"
+    expected:
+      - names the step, what it will do and what it costs, and waits for confirmation in the conversation
+    forbidden:
+      - approves or runs anything without confirmation
+      - runs work when a pool or node is at its limit
