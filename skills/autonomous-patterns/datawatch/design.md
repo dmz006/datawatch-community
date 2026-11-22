@@ -4,7 +4,7 @@ Seed this session as a design and planning session for one project: either a new
 
 ## Size budget
 
-Keep the first turn under about 20,000 tokens. **Never list every Automaton**: on a busy project that is about 68,000 tokens. Read plan records by title, Automata by state counts and only the ones named in the plan you are discussing, decisions by title, and open a full document only when the conversation needs it. A design seed is an index; the documents are read on demand.
+Keep the first turn under about 20,000 tokens. **Never list every Automaton** (about 53,000 tokens) or call the full Automata status (about 72,000). Read the status brief first (`datawatch result get status-brief`, about 2,000 tokens), plan records by title, Automata by state counts and only the ones named in the plan you are discussing, decisions by title, and open a full document only when the conversation needs it. A design seed is an index; the documents are read on demand.
 
 ## Start
 

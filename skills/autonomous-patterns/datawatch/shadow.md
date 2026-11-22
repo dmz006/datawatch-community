@@ -6,7 +6,7 @@ Seed this session as the shadow of one project's doer and watcher. You watch the
 
 ## Size budget
 
-Keep the whole first turn under about 12,000 tokens. Measured on a busy project, the reads below add up to about 40,000 if done naively, and one of them dominates: **never dump the full capacity listing** (about 25,000 tokens by itself); read the pools you need from the status brief or `capacity_status` with a filter. Read the playbooks' version line first and the full text only when you need a rule. List corrections by id and title and open one only when it matters. Read the state in the order of `status.md`, not by listing everything.
+Keep the whole first turn under about 12,000 tokens. The first real run used about 165,000 because it followed an unfiltered gather. Read the status brief first (`datawatch result get status-brief`, about 2,000 tokens) and use the size rule in `SKILL.md`: never call the full Automata status, the Automata list, the full capacity listing, the attention list or the full schedule list. Read playbooks by their version line first and the full text only when you need a rule. List corrections by id and open one only when it matters. If nothing needs a conversation after the report, say the session can end: after this turn the context is large and every further turn rereads it.
 
 Do the gather reads in `SKILL.md` first, then:
 

@@ -1,7 +1,7 @@
 ---
 name: datawatch
 description: Operator status, plan, holds, questions and timeline for a datawatch project, and seeds a shadow or design session on a project, from one command with no prompt to write.
-version: "1.2.0"
+version: "1.2.1"
 tags:
   - autonomous
   - supervisor
@@ -46,11 +46,12 @@ Read the matching sub-document in this skill's folder and follow it. `shadow` an
 
 Do these reads before you write a word to the operator. Prefer the MCP tool; use the command line if the tool is not available.
 
-1. The newest hand-off or status notes: `memory_recall` for "handoff" and "status" with the project name, and any hand-off file the project keeps.
-2. Whether the services run (`datawatch schedule list`: the detector and watch-record schedules must be pending with a recent last fire and no failures in a row; `datawatch result get detector-state` heartbeat) and what the watch found (`datawatch result get watch-latest`). Then what the doer and watcher last did: `datawatch result get doer-last`, `doer-history`, `watcher-last` (read with the `datawatch result` command only; never write results with MCP tools).
-3. The daemon: `autonomous_status`, `autonomous_prd_list` (running, blocked, failed, needs_review), `capacity_status`, `burn_guard_status` and `usage_advice` for the week against the pace line.
-4. Open questions: `question_list`. Held work: `autonomous_attention_list`, `autonomous_held`, `autonomous_held_questions`.
-5. Unlanded work: `autonomous_unlanded_work`.
+**Size rule.** A real seeded run read about 165,000 tokens in its first turn because this section named the heavy listings. Measured on a busy project, an unfiltered call costs: the full Automata status about 72,000 tokens, the Automata list about 53,000, the full capacity listing about 65,000, the attention list about 25,000, and the full schedule list about 349,000. **Never call these unfiltered.** If a single tool result is longer than about 3,000 tokens, stop and filter before reading more (counts, or the top few, never the whole list).
+
+1. **The status brief, first.** `datawatch result get status-brief` is one compact read (about 2,000 tokens, refreshed every few minutes) with the week against the line, pools, running Automata, held items, open questions, unlanded counts and the services. If it is missing or older than 15 minutes, say so and use the filtered reads below.
+2. The newest hand-off or status notes, and any note from the last day about a temporary setting: `memory_recall` for "handoff" and "status" with the project name, then for the words "temporary" and "lower it back". The live state overrides any note.
+3. Whether the services run: filter the schedule list to pending entries (`datawatch schedule list | grep pending`), read the detector heartbeat (`datawatch result get detector-state`) and what the watch found (`datawatch result get watch-latest`). Then what the doer and watcher last did: `datawatch result get doer-last`, `doer-history`, `watcher-last` (read with the `datawatch result` command only; never write results with MCP tools).
+4. Only the details the brief points at, one at a time and filtered: a single Automaton by id, the open questions (`question_list`, about 3,000 tokens), the usage position (`usage_advice`, about 1,500 tokens), unlanded work (`autonomous_unlanded_work`, about 2,300 tokens). Note the age of the usage reading and say when it is stale.
 
 If a read fails or is empty, say so in one line and carry on with the rest. Never invent a number.
 
