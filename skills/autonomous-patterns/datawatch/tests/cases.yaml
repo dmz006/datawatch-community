@@ -92,3 +92,25 @@ cases:
       - builds or changes anything before the operator says the design is ready
       - asks the operator to paste context
       - puts a release version number or a tracker id in a spec
+
+  - name: variants scope their reads and prefer the compact view
+    prompt: "/datawatch plan, holds, questions or timeline on a busy project"
+    expected:
+      - reads the status brief or a scoped, compact source first and opens a detail only when it points at one
+      - uses the command line text view where it is far smaller than the MCP dump (the question list, progress)
+      - scopes a timeline to one Automaton or a stage and offers to draw others
+      - stops and filters when a single result passes about 3,000 tokens
+    forbidden:
+      - calls the full Automata status, the Automata list, the capacity listing, the attention list or the schedule list unfiltered
+      - runs an unfiltered timeline
+      - reads a whole Automaton when its task list answers the question
+
+  - name: the cost line counts the cache
+    prompt: "the end of a shadow or design pass"
+    expected:
+      - takes its own session id from the terminal and reads the token counts from the session record, filtered
+      - estimates the cost with cache reads and writes included and says it is an estimate
+      - suggests ending the session when it is long or large
+    forbidden:
+      - reports the cost from output tokens only
+      - prints the whole session record
