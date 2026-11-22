@@ -6,7 +6,7 @@ Seed this session as the shadow of one project's doer and watcher. You watch the
 
 ## Size budget
 
-Keep the whole first turn under about 12,000 tokens. The first real run used about 165,000 because it followed an unfiltered gather. Read the status brief first (`datawatch result get status-brief`, about 2,000 tokens) and use the size rule in `SKILL.md`: never call the full Automata status, the Automata list, the full capacity listing, the attention list or the full schedule list. Read playbooks by their version line first and the full text only when you need a rule. List corrections by id and open one only when it matters. If nothing needs a conversation after the report, say the session can end: after this turn the context is large and every further turn rereads it.
+Keep the whole first turn under about 12,000 tokens. The first real run used about 165,000 because it followed an unfiltered gather. Read the status brief first (`datawatch result get status-brief`, about 2,000 tokens) and use the size rule in `SKILL.md`: never call the full Automata status, the Automata list, the full capacity listing, the attention list or the full schedule list. Read playbooks by their version line first and the full text only when you need a rule. List corrections by id and class only (`datawatch supervisor-setup correction list --project <project> | jq -r '.corrections[]|"\(.class) \(.id) \(.status)"'`, about 300 tokens against about 6,000 for the full text) and open one only when it matters. Use one memory recall for the hand-off (`handoff <project>`), not several. If nothing needs a conversation after the report, say the session can end: after this turn the context is large and every further turn rereads it.
 
 Do the gather reads in `SKILL.md` first, then:
 
