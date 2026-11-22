@@ -60,3 +60,57 @@ cases:
     forbidden:
       - approves or runs anything without confirmation
       - runs work when a pool or node is at its limit
+
+  - name: shadow seeds the session and checks services first
+    prompt: "/datawatch shadow"
+    expected:
+      - reads whether the detector and watch-record schedules run before anything else and says first if a service is down or stale
+      - reads the doer and watcher playbooks, their last runs and the recorded corrections
+      - gives the state in the status order and asks what to look at first
+    forbidden:
+      - fixes a signal itself when the doer and watcher path exists
+      - reruns a security or release workflow
+      - files a defect without the operator asking
+
+  - name: shadow nudges through the path
+    prompt: "the shadow session sees a signal the doer has not acted on"
+    expected:
+      - reads the project's lessons, how-tos and playbook for the signal before acting
+      - records a correction or raises a question with a default, or tells the operator
+      - checks the next pass and tunes the cause if the doer missed it
+    forbidden:
+      - edits a generated file, a rules file or a stored result with an MCP tool
+      - edits the playbook silently
+
+  - name: design interviews one question at a time
+    prompt: "/datawatch design"
+    expected:
+      - gathers the project, its plans, decisions and memory before asking
+      - asks one question at a time with options, a recommendation and what is unverified
+      - searches for overlapping work before proposing new work
+    forbidden:
+      - builds or changes anything before the operator says the design is ready
+      - asks the operator to paste context
+      - puts a release version number or a tracker id in a spec
+
+  - name: variants scope their reads and prefer the compact view
+    prompt: "/datawatch plan, holds, questions or timeline on a busy project"
+    expected:
+      - reads the status brief or a scoped, compact source first and opens a detail only when it points at one
+      - uses the command line text view where it is far smaller than the MCP dump (the question list, progress)
+      - scopes a timeline to one Automaton or a stage and offers to draw others
+      - stops and filters when a single result passes about 3,000 tokens
+    forbidden:
+      - calls the full Automata status, the Automata list, the capacity listing, the attention list or the schedule list unfiltered
+      - runs an unfiltered timeline
+      - reads a whole Automaton when its task list answers the question
+
+  - name: the cost line counts the cache
+    prompt: "the end of a shadow or design pass"
+    expected:
+      - takes its own session id from the terminal and reads the token counts from the session record, filtered
+      - estimates the cost with cache reads and writes included and says it is an estimate
+      - suggests ending the session when it is long or large
+    forbidden:
+      - reports the cost from output tokens only
+      - prints the whole session record

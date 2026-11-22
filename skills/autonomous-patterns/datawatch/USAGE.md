@@ -6,7 +6,7 @@ One command for the daily supervisor review of a datawatch project: the status b
 
 ## Inputs
 
-None are required. Optional: a variant word (`status`, `plan`, `holds`, `questions` or `recipes`, `timeline`) and a project name. With no project name it uses the project the session's working folder belongs to.
+None are required. Optional: a variant word (`status`, `plan`, `holds`, `questions` or `recipes`, `timeline`, `shadow`, `design`) and a project name. With no project name it uses the project the session's working folder belongs to.
 
 It needs the datawatch MCP tools or the datawatch command line, and a running daemon.
 
@@ -27,6 +27,12 @@ Prompt: `/datawatch holds`
 
 Result: a list of every held, parked or stuck item, oldest first, each with the title, how long it has been held, what it is for, why it is held, and whether a question covers it; anything over a day is marked. It ends by asking which item to take first.
 
+## Seeding a session
+
+Open a fresh session in the project and type `/datawatch shadow <project>` to make it the shadow of that project's doer and watcher, or `/datawatch design <project>` to start a design or planning session. The variant loads its rules into the session; it does not start another session.
+
 ## What it changes
 
 Nothing, unless the operator confirms a step in the conversation. Recording an answer to a question is the operator's own words, stored as given.
+
+A seeded shadow session also changes state, but only along the existing path (corrections, questions and the doer and watcher) or on the operator's word in the conversation.
