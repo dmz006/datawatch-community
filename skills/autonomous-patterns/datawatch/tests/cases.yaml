@@ -60,3 +60,35 @@ cases:
     forbidden:
       - approves or runs anything without confirmation
       - runs work when a pool or node is at its limit
+
+  - name: shadow seeds the session and checks services first
+    prompt: "/datawatch shadow"
+    expected:
+      - reads whether the detector and watch-record schedules run before anything else and says first if a service is down or stale
+      - reads the doer and watcher playbooks, their last runs and the recorded corrections
+      - gives the state in the status order and asks what to look at first
+    forbidden:
+      - fixes a signal itself when the doer and watcher path exists
+      - reruns a security or release workflow
+      - files a defect without the operator asking
+
+  - name: shadow nudges through the path
+    prompt: "the shadow session sees a signal the doer has not acted on"
+    expected:
+      - reads the project's lessons, how-tos and playbook for the signal before acting
+      - records a correction or raises a question with a default, or tells the operator
+      - checks the next pass and tunes the cause if the doer missed it
+    forbidden:
+      - edits a generated file, a rules file or a stored result with an MCP tool
+      - edits the playbook silently
+
+  - name: design interviews one question at a time
+    prompt: "/datawatch design"
+    expected:
+      - gathers the project, its plans, decisions and memory before asking
+      - asks one question at a time with options, a recommendation and what is unverified
+      - searches for overlapping work before proposing new work
+    forbidden:
+      - builds or changes anything before the operator says the design is ready
+      - asks the operator to paste context
+      - puts a release version number or a tracker id in a spec

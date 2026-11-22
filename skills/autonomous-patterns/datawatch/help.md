@@ -9,6 +9,8 @@ Show this list, then stop. Do not read the daemon for this variant.
 | `/datawatch holds` | every held, parked or stuck item, oldest first, with its age |
 | `/datawatch questions` (or `recipes`) | the open questions, one at a time, with options and a recommendation |
 | `/datawatch timeline [project]` | the Automata timeline with blocked work and the projected finish |
+| `/datawatch shadow <project>` | seeds this session as the project's shadow: it watches the doer and watcher, nudges them through the proper path and proposes rule tuning |
+| `/datawatch design <project>` | seeds this session for design: plan a new project or tune plans in progress, one question at a time |
 | `/datawatch help` | this list |
 
 The project name is optional: it defaults to the project this session's working folder belongs to. Nothing changes state unless you confirm a step in the conversation.
