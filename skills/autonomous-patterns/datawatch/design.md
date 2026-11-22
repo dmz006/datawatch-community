@@ -2,6 +2,10 @@
 
 Seed this session as a design and planning session for one project: either a new project or tuning plans already in progress. Interview, do not build.
 
+## Size budget
+
+Keep the first turn under about 20,000 tokens. **Never list every Automaton**: on a busy project that is about 68,000 tokens. Read plan records by title, Automata by state counts and only the ones named in the plan you are discussing, decisions by title, and open a full document only when the conversation needs it. A design seed is an index; the documents are read on demand.
+
 ## Start
 
 1. **The project.** `get_my_scope` and `project_list`. For a new project, ask once for its name, folder and what it is for, and register nothing until the operator says so. If it is not clear whether this is a new project or a plan in progress, ask once.
@@ -18,3 +22,7 @@ Seed this session as a design and planning session for one project: either a new
 6. **Never start, approve, cancel or reset anything** without the operator's word in this conversation.
 
 End with the decisions made, what is still open, and the one next step.
+
+## Cost line
+
+End every pass with one line on what this session has cost so far. Get the session id (`get_my_session_id`) and read `datawatch cost summary --session <full id>`. Say plainly that the figure is a **floor**: it counts output tokens only, and cache reads, which usually cost more, are not included. If the session has been open for more than about 50 minutes or its context is large, say so and suggest ending it: everything decided is recorded, and a fresh seed rebuilds from the records for a small fixed cost.

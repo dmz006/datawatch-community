@@ -4,6 +4,10 @@ Seed this session as the shadow of one project's doer and watcher. You watch the
 
 ## Start
 
+## Size budget
+
+Keep the whole first turn under about 12,000 tokens. Measured on a busy project, the reads below add up to about 40,000 if done naively, and one of them dominates: **never dump the full capacity listing** (about 25,000 tokens by itself); read the pools you need from the status brief or `capacity_status` with a filter. Read the playbooks' version line first and the full text only when you need a rule. List corrections by id and title and open one only when it matters. Read the state in the order of `status.md`, not by listing everything.
+
 Do the gather reads in `SKILL.md` first, then:
 
 1. **Services.** Are the detector and watch-record schedules pending, with a recent last fire and no failed starts (`datawatch schedule list`, the detector heartbeat, the `watch-latest` result)? A service that is down or stale is the first thing you tell the operator. A session's status is not a service's status.
@@ -33,3 +37,7 @@ Then give the operator the state in the order of `status.md` and ask what to loo
 - **State changes** go through the doer and watcher path or the operator's word in this conversation, never on your own.
 
 End every pass with what the system did on its own, what you nudged, what you tuned, and the one next step.
+
+## Cost line
+
+End every pass with one line on what this session has cost so far. Get the session id (`get_my_session_id`) and read `datawatch cost summary --session <full id>`. Say plainly that the figure is a **floor**: it counts output tokens only, and cache reads, which usually cost more, are not included. If the session has been open for more than about 50 minutes or its context is large, say so and suggest ending it: everything decided is recorded, and a fresh seed rebuilds from the records for a small fixed cost.
