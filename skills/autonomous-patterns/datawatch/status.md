@@ -2,7 +2,7 @@
 
 Give a ten-line brief, then stop and offer the next step. Read the status brief first (`datawatch result get status-brief`); every item below is in it. Open a detail only when the brief points at one, and never call the capacity, Automata or schedule listings unfiltered (see the cost principle).
 
-1. **Week against the line.** From the brief (or `burn_guard_status` and `usage_advice` if the brief is missing): the week's use against the pace line, the burn rate against what is allowed, and whether the projected finish is over or under. Say when the next reset is.
+1. **Usage, the plan's own way.** From the brief's USAGE block: the week percent and its age (say when it is stale), the window percent against the 85% pause line, the pace line and how far ahead or behind, the burn since the last reading against the allowed burn, and the catch-up table (how many hours at no new Claude burn, at the idle baseline, or at 1, 2 or 3 lanes until usage is back on the line). Give API-equivalent dollars beside the points (the brief calibrates dollars per point from this week); dollars are not a bill.
 2. **Pools.** From the brief (never `capacity_status` unfiltered, about 65,000 tokens): each pool and node, in use against its limit. If the ledger shows a pool free while sessions are live, say the ledger is understating.
 3. **Running.** How many Automata run, the one or two most important by title, and any task session that has run two hours or more.
 4. **Finished or failed.** What completed since the last review and what failed, by title, with the one-line reason.
